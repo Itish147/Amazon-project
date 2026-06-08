@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+  testng-parallel.xml
+  ════════════════════════════════════════════════════════════════
+  Drives PARALLEL execution of the two Amazon test cases.
+
+  parallel="tests"  → each <test> block runs in its own thread.
+  thread-count="2"  → two threads run simultaneously (one per TC).
+
+  To run serially instead, set  parallel="none"  or omit the
+  parallel attribute entirely.
+  ════════════════════════════════════════════════════════════════
+-->
+<suite name="Amazon Automation Suite"
+       parallel="tests"
+       thread-count="2"
+       verbose="2">
+
+    <!-- ── TC-01 : iPhone ─────────────────────────────────────── -->
+    <test name="TC-01 | iPhone Search and Cart">
+        <parameter name="searchQuery"  value="Apple iPhone 15"/>
+        <parameter name="productLabel" value="iPhone"/>
+        <classes>
+            <class name="com.amazon.tests.ProductSearchCartTest"/>
+        </classes>
+    </test>
+
+    <!-- ── TC-02 : Samsung Galaxy ─────────────────────────────── -->
+    <test name="TC-02 | Galaxy Device Search and Cart">
+        <parameter name="searchQuery"  value="Samsung Galaxy S24"/>
+        <parameter name="productLabel" value="Galaxy"/>
+        <classes>
+            <class name="com.amazon.tests.ProductSearchCartTest"/>
+        </classes>
+    </test>
+
+</suite>
